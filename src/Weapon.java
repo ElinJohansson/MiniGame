@@ -4,12 +4,12 @@ import java.util.List;
 public class Weapon {
     private char revolver = '\u00AE';
     private Position position;
-    private int direction;
+    private int[] direction;
     public List<Ammo> shotsFired = new ArrayList<>();
 
     public Weapon(Position playerPosition){
         position =playerPosition;
-        direction=Direction.RIGHT_X;
+        direction=Direction.right;
     }
 
     public char getRevolver() {
@@ -28,5 +28,9 @@ public class Weapon {
     public void shoot(){
         Ammo newShot = new Ammo(position,direction);
         shotsFired.add(newShot);
+    }
+
+    public void moveWeapon(Position playerPosition){
+        position=playerPosition;
     }
 }
