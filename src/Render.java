@@ -12,7 +12,7 @@ public class Render {
         printGameBoard(game.terminal, game.map);
         printScoreBoard(game.terminal, game.map);
         printPlayer(game.terminal, game.player);
-        printEnemy(game.terminal, game.monsters);
+        printEnemy(game.terminal, game.enemies);
         printWeapon(game.terminal, game.player.weapon);
         printAmmo(game.terminal, game.player.weapon.shotsFired);
     }
@@ -56,9 +56,13 @@ public class Render {
         terminal.putCharacter(player.heMan);
     }
 
-    //Prints the enemies list
-    public void printEnemy() {
-
+    //Goes through the enemies' list and prints to the terminal
+    public void printEnemy(Terminal terminal, List<Enemy> enemies) {
+        for(Enemy enemy:enemies){
+            terminal.applyForegroundColor(255,255,0);
+            terminal.moveCursor(enemy.getPosition().getPosistionX(), enemy.getPosition().getPositionY());
+            terminal.putCharacter(enemy.Face); //Enemy char
+        }
     }
 
     //Prints the weapon position
