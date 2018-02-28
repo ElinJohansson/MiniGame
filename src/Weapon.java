@@ -24,6 +24,7 @@ public class Weapon {
         position = playerPosition;
     }
 
+    //Creates an ammo object and adds it to shotsFired
     public void shoot(){
         Ammo newShot = new Ammo(position,direction);
         shotsFired.add(newShot);
