@@ -1,3 +1,5 @@
+import com.googlecode.lanterna.input.Key;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,22 @@ public class Weapon {
         shotsFired.add(newShot);
     }
 
-    public void moveWeapon(Position playerPosition){
+    public void moveWeapon(Position playerPosition,Key key){
+        switch (key.getKind()){
+            case NormalKey:
+                switch (key.getCharacter()){
+                    case w: case W:
+                        
+                        break;
+                    case s: case S:
+                        break;
+                    case a: case A:
+                        break;
+                    case d: case D:
+                        break;
+                }
+
+        }
         position=playerPosition;
     }
 }

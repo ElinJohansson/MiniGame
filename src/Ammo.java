@@ -13,15 +13,16 @@ public class Ammo {
         return position;
     }
 
-    public void setPosition(Position weaponPosition) {
-        position = weaponPosition;
-    }
-
     public char getShot() {
         return shot;
     }
 
     public int[] getDirection() {
         return direction;
+    }
+
+    public void moveAmmo() {
+        position.setPositionX(position.getPositionX() + direction[0]);
+        position.setPositionY(position.getPositionY() + direction[1]);
     }
 }
