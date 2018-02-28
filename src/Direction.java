@@ -1,9 +1,11 @@
 public class Direction {
-    public static final int LEFT_X=-1;
-    public static final int RIGHT_X=1;
-    public static final int UP_Y=-1;
-    public static final int DOWN_Y=1;
+    public static final int LEFT_X = -1;
+    public static final int RIGHT_X = 1;
+    public static final int UP_Y = -1;
+    public static final int DOWN_Y = 1;
 
+
+<<<<<<< HEAD
     public static Position goLeft(Position characterPosition){
         characterPosition.setPositionX(characterPosition.getPositionX()+LEFT_X);
         return characterPosition;
@@ -23,4 +25,6 @@ public class Direction {
         characterPosition.setPositionY(characterPosition.getPositionY()+DOWN_Y);
         return characterPosition;
     }
+=======
+>>>>>>> c09429e09951c2a9652f63de72fd308d968f7e8e
 }
