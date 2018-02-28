@@ -11,8 +11,8 @@ public class Game {
     private Render render;
     private Move move;
 
-    private Map map;
-    private Player player;
+    public Map map;
+    public Player player;
 
     private List<Enemy> enemies;
     private int numberOfEnemies = 4;
