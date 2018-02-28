@@ -9,6 +9,7 @@ public class Game {
 
     private Terminal terminal;
     private Render render;
+    private Move move;
 
     private Map map;
     private Player player;
