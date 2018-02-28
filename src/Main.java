@@ -1,42 +1,24 @@
 import com.googlecode.lanterna.input.Key;
-import com.googlecode.lanterna.terminal.Terminal;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Game game = new Game();
-
-/*        while(true){
-            while(!gameOver){
-                Key key;
+        Key key;
+        int iterator = 0;
+        while (true) {
+            while (!game.gameOver()) {
                 do {
-//                    Thread.sleep(5);
-                    key = terminal.readInput();
-                    monster.move();
-                    //evt iterator för att kolla när monstren får röra sig
-                    if(iterator%100 == 0){
-                        monster.move;
+                    Thread.sleep(5);
+                    key = game.terminal.readInput();
+                    if (iterator % 100 == 0) {
+                        //monster ska röra på sig
                     }
                     iterator++;
                 }
                 while (key == null);
-                game.move.checkKeyInput();
+                game.move.checkKeyInput(key, game);
             }
-
-        }*/
-
-
-//        public void movePlayer(Terminal terminal) throws InterruptedException{
-//            Key key;
-//            do {
-//                Thread.sleep(5);
-//                key = terminal.readInput();
-//            }
-//            while (key == null);
-//
-//            int x = getPosition().getPositionX();
-//            int y = getPosition().getPositionY();
-//
-//            Position newPosition = new Position(x,y);
-//    }
+        }
+    }
 }
