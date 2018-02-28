@@ -14,7 +14,7 @@ public class Render {
         printPlayer(terminal, player);
         printEnemy(terminal, enemies);
         printWeapon(terminal, player.weapon);
-        printAmmo(terminal, player.weapon.shotsFired);
+        printAmmo(terminal,player.weapon.shotsFired);
     }
 
     //Prints the game board

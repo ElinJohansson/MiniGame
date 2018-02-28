@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Game {
 
-    private Terminal terminal;
+    public Terminal terminal;
     private Render render;
-    private Move move;
+    public Move move;
 
     public Map map;
     public Player player;
