@@ -1,5 +1,7 @@
 import com.googlecode.lanterna.terminal.Terminal;
 
+import java.util.List;
+
 public class Render {
 
     Terminal terminal;
@@ -11,8 +13,8 @@ public class Render {
         printScoreBoard(game.terminal, game.map);
         printPlayer(game.terminal, game.player);
         printEnemy(game.terminal, game.monsters);
-        printWeapon();
-        printAmmo();
+        printWeapon(game.terminal, game.player.weapon);
+        printAmmo(game.terminal, game.player.weapon.shotsFired);
     }
 
     //Prints the game board
@@ -60,12 +62,19 @@ public class Render {
     }
 
     //Prints the weapon position
-    public void printWeapon() {
-
+    public void printWeapon(Terminal terminal, Weapon weapon) {
+        terminal.applyForegroundColor(255, 255, 0);
+        terminal.moveCursor(weapon.getPosition().getPositionX(), weapon.getPosition().getPositionY());
+        terminal.putCharacter(weapon.getRevolver()); //Weapon char
     }
 
-    //Prints the ammo list
-    public void printAmmo() {
 
+    //Goes through the ammo list and prints to the terminal
+    public void printAmmo(Terminal terminal, List<Ammo> shotsFired) {
+        for (Ammo ammo : shotsFired) {
+            terminal.applyForegroundColor(255, 255, 0);
+            terminal.moveCursor(ammo.getPosition().getPositionX(), ammo.getPosition().getPositionY()); //Gets the ammo position
+            terminal.putCharacter(ammo.getShot()); //Ammo char
+        }
     }
 }
