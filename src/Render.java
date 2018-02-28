@@ -7,14 +7,14 @@ public class Render {
     Terminal terminal;
 
     //Updates the map in the terminal
-    public void updateMap(Game game) {
-        game.terminal.clearScreen();
-        printGameBoard(game.terminal, game.map);
-        printScoreBoard(game.terminal, game.map);
-        printPlayer(game.terminal, game.player);
-        printEnemy(game.terminal, game.enemies);
-        printWeapon(game.terminal, game.player.weapon);
-        printAmmo(game.terminal, game.player.weapon.shotsFired);
+    public void updateMap(Terminal terminal, Player player, List<Enemy> enemies, Map map) {
+        terminal.clearScreen();
+        printGameBoard(terminal, map);
+        printScoreBoard(terminal, map);
+        printPlayer(terminal, player);
+        printEnemy(terminal, enemies);
+        printWeapon(terminal, player.weapon);
+        printAmmo(terminal, player.weapon.shotsFired);
     }
 
     //Prints the game board
