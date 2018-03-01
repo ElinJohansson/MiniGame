@@ -17,6 +17,7 @@ public class Player {
     public Player(){
         position = new Position(startX,startY);
         weapon = new Weapon(position);
+        setDirection(Direction.right);
     }
 
     //Getters and setters

@@ -17,7 +17,7 @@ public class Game {
     public Player player;
 
     private List<Enemy> enemies;
-    private int numberOfEnemies = 5;
+    private int numberOfEnemies = 10;
 
     private int scoreCount = 0;
 
@@ -62,9 +62,9 @@ public class Game {
 
     //Game over condition
     public boolean gameOver() {
-        for(Enemy enemy : enemies){
-            if(enemy.getPosition().getPositionX() == player.getPosition().getPositionX() &&
-                    enemy.getPosition().getPositionY() == player.getPosition().getPositionY()){
+        for (Enemy enemy : enemies) {
+            if (enemy.getPosition().getPositionX() == player.getPosition().getPositionX() &&
+                    enemy.getPosition().getPositionY() == player.getPosition().getPositionY()) {
                 System.out.println("Game Over");
                 return true;
             }
@@ -72,26 +72,41 @@ public class Game {
         return false;
     }
 
-//    //Method that checks if an enemy is hit by ammo and kills it
-//    public void enemyHitByAmmo() {
-//        for (Enemy enemy : enemies) {
-//            for (Ammo ammo : player.weapon.shotsFired) {
-//                if (enemy.getPosition() == ammo.getPosition()) {
-//                    enemies.remove(enemy);
-//                    player.weapon.shotsFired.remove(ammo);
-//                }
-//            }
-//        }
-//    }
+    //Method that checks if an enemy is hit by ammo and kills it
+    public void enemyHitByAmmo() {
+        List<Enemy> tempEnemies = new ArrayList<>();
+        List<Ammo> tempAmmo = new ArrayList<>();
+        System.out.println(enemies.toString());
+        for (Enemy enemy : enemies) {
+            for (Ammo ammo : player.weapon.shotsFired) {
+                if (enemy.getPosition().getPositionX() == ammo.getPosition().getPositionX() && enemy.getPosition().getPositionY() == ammo.getPosition().getPositionY()) {
+                    terminal.moveCursor(enemy.getPosition().getPositionX(), enemy.getPosition().getPositionY());
+                    terminal.putCharacter(' ');
+                    tempEnemies.add(enemy);
+                    tempAmmo.add(ammo);
 
-//    //Method that checks if ammo hits wall, then removes it
-//    public void ammoHitsWall() {
-//        for (Ammo ammo : player.weapon.shotsFired) {
-//            if (map.gameBoard[ammo.getPosition().getPositionX()][ammo.getPosition().getPositionY()] == 1) {
-//                player.weapon.shotsFired.remove(ammo);
-//            }
-//        }
-//    }
+                }
+            }
+        }
+        enemies.removeAll(tempEnemies);
+        player.weapon.shotsFired.removeAll(tempAmmo);
+        System.out.println(enemies.toString());
+
+    }
+
+    //Method that checks if ammo hits wall, then removes it
+    public void ammoHitsWall() {
+        List<Ammo> tempAmmo = new ArrayList<>();
+        for (Ammo ammo : player.weapon.shotsFired) {
+            if (ammo.getPosition().getPositionX() == map.getGameBoardWidth()-1) {
+                terminal.moveCursor(ammo.getPosition().getPositionX(), ammo.getPosition().getPositionY());
+                terminal.applyForegroundColor(100, 30, 15);
+                terminal.putCharacter('\u2588');
+                tempAmmo.add(ammo);
+            }
+        }
+        player.weapon.shotsFired.removeAll(tempAmmo);
+    }
 
 
     //Method that returns the score count ie number of enemies shot
@@ -131,9 +146,9 @@ public class Game {
             }
             Position newPosition = new Position(x, y);
             mon.setPosition(newPosition);
-            if (isMonsterOnMonster(enemies)) {
-                mon.setPosition(oldPosition);
-            }
+//            if (isMonsterOnMonster(enemies)) {
+//                mon.setPosition(oldPosition);
+//            }
 
             //Uppdaterar monstrets position och suddar ut föregående
             terminal.applyForegroundColor(0, 0, 0);
@@ -142,6 +157,28 @@ public class Game {
             terminal.applyForegroundColor(0, 0, 0);
             terminal.moveCursor(oldX, oldY);
             terminal.putCharacter(' ');
+        }
+    }
+
+    //Prints ammos
+    public void printAmmo() {
+        List<Ammo> ammos = player.weapon.shotsFired;
+        for (Ammo a : ammos) {
+            terminal.moveCursor(a.getPosition().getPositionX(), a.getPosition().getPositionY());
+            terminal.putCharacter(a.getShot());
+        }
+    }
+
+    public void moveAmmo() {
+        List<Ammo> ammos = player.weapon.shotsFired;
+        for (Ammo a : ammos) {
+            int tempX = a.getPosition().getPositionX();
+            int tempY = a.getPosition().getPositionY();
+            terminal.moveCursor(tempX, tempY);
+            terminal.putCharacter(' ');
+            a.moveAmmo();
+            terminal.moveCursor(a.getPosition().getPositionX(), a.getPosition().getPositionY());
+            terminal.putCharacter(a.getShot());
         }
     }
 

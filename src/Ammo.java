@@ -4,8 +4,9 @@ public class Ammo {
     private int[] direction;
 
     public Ammo(Position weaponPosition, int[] weaponDirection) {
-        position.setPositionX(weaponPosition.getPositionX() + weaponDirection[0]);
-        position.setPositionY(weaponPosition.getPositionY() + weaponDirection[1]);
+        position = new Position(weaponPosition.getPositionX() + weaponDirection[0],(weaponPosition.getPositionY() + weaponDirection[1]));
+//        this.position.setPositionX(weaponPosition.getPositionX() + weaponDirection[0]);
+//        this.position.setPositionY(weaponPosition.getPositionY() + weaponDirection[1]);
         direction = weaponDirection;
     }
 

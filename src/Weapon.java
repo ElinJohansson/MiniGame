@@ -22,14 +22,18 @@ public class Weapon {
         return position;
     }
 
-    public void setPositionOnPlayer(Player player) {
+    public void setWeaponPositionOnPlayer(Player player) {
         //nya positionen ska vara vapnets gamla position plus riktningen som spelaren rör sig i
         int weaponOldX = position.getPositionX();
         int weaponOldY = position.getPositionY();
         int[] playerDirection = player.getDirection();
         position.setPositionX(weaponOldX+playerDirection[0]);
-        position.setPositionY(weaponOldY+playerDirection[1]);
+       position.setPositionY(weaponOldY+playerDirection[1]);
 
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public void changeWeaponPositionOnPlayer(Position position){

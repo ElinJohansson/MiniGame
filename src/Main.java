@@ -8,15 +8,27 @@ public class Main {
 
         int counter = 10;
         int monsterCounter = 0;
+        int ammoCounter = 0;
+        int counterForAmmo = 3;
+
 
         do {
-
+            Thread.sleep(100);
             if (monsterCounter == counter) {
                 game.moveEnemies();
 //                game.gameTurn();
                 monsterCounter = 0;
             }
+            if( ammoCounter == counterForAmmo){
+                game.moveAmmo();
+                game.ammoHitsWall();
+                game.enemyHitByAmmo();
+                game.printAmmo();
+                ammoCounter = 0;
+
+            }
             monsterCounter++;
+            ammoCounter++;
             game.move.checkKeyInput(game);
         }
         while (!game.gameOver());
