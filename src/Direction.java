@@ -8,7 +8,7 @@ public class Direction {
 
     public static Position goLeft(Position characterPosition){
 
-        Position tempPosition = new Position(0,characterPosition.getPositionY());
+        Position tempPosition = new Position(characterPosition.getPositionX(),characterPosition.getPositionY());
         tempPosition.setPositionX(characterPosition.getPositionX()+left[0]);
 
         return tempPosition;

@@ -3,7 +3,9 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Game {
 
@@ -40,17 +42,9 @@ public class Game {
         render.updateMap(terminal, player, enemies, map);
     }
 
-    public void gameTurn(){
-        render.updateMap(terminal,player,enemies,map);
+    public void gameTurn() {
+        render.updateMap(terminal, player, enemies, map);
     }
-
-    public void moveEnemies(){
-        for(Enemy e : enemies){
-            e.moveEnemy(player,map, enemies );
-        }
-    }
-
-
 
     //Adds enemies to enemy list
     public void addEnemies() {
@@ -91,9 +85,9 @@ public class Game {
     }
 
     //Method that checks if ammo hits wall, then removes it
-    public void ammoHitsWall(){
-        for(Ammo ammo:player.weapon.shotsFired){
-            if(map.gameBoard[ammo.getPosition().getPositionX()][ammo.getPosition().getPositionY()] == 1){
+    public void ammoHitsWall() {
+        for (Ammo ammo : player.weapon.shotsFired) {
+            if (map.gameBoard[ammo.getPosition().getPositionX()][ammo.getPosition().getPositionY()] == 1) {
                 player.weapon.shotsFired.remove(ammo);
             }
         }
@@ -108,6 +102,51 @@ public class Game {
     //Method that updates the score count, called when an enemy is shot
     public void setScoreCount(int scoreCount) {
         this.scoreCount = scoreCount;
+    }
+
+    //Method that loops over the enemies' list and moves them
+    public void moveEnemies() {
+        int iterator = 0;
+
+        for (Enemy mon : enemies) {
+            //Hämta enemy position
+            int x = enemies.get(iterator).getPosition().getPositionX();
+            int y = enemies.get(iterator).getPosition().getPositionY();
+            Position oldPosition = new Position(x, y);
+
+            if (enemies.get(iterator).getPosition().getPositionX() > player.getPosition().getPositionX()) {
+                x--;
+            }
+            if (enemies.get(iterator).getPosition().getPositionX() < player.getPosition().getPositionX()) {
+                x++;
+            }
+            if (enemies.get(iterator).getPosition().getPositionY() > player.getPosition().getPositionY()) {
+                y--;
+            }
+            if (enemies.get(iterator).getPosition().getPositionY() < player.getPosition().getPositionX()) {
+                y++;
+            }
+            Position newPosition = new Position(x, y);
+            enemies.get(iterator).setPosition(newPosition);
+            if (isMonsterOnMonster(enemies)) {
+                enemies.get(iterator).setPosition(oldPosition);
+            }
+            iterator++;
+        }
+    }
+
+
+    public boolean isMonsterOnMonster(List<Enemy> enemies) {
+        Set<String> monsterPositionString = new HashSet<>();
+        for (int i = 0; i < enemies.size(); i++) {
+            String s = "";
+            s = "x:" + enemies.get(i).getPosition().getPositionX() + "y:" + enemies.get(i).getPosition().getPositionY();
+            if (monsterPositionString.contains(s)) {
+                return true;
+            }
+            monsterPositionString.add(s);
+        }
+        return false;
     }
 
 
