@@ -7,23 +7,34 @@ public class Direction {
 
 
     public static Position goLeft(Position characterPosition){
-        characterPosition.setPositionX(characterPosition.getPositionX()+left[0]);
-        return characterPosition;
+
+        Position tempPosition = new Position(0,characterPosition.getPositionY());
+        tempPosition.setPositionX(characterPosition.getPositionX()+left[0]);
+
+        return tempPosition;
     }
 
     public static Position goRight(Position characterPosition){
-        characterPosition.setPositionX(characterPosition.getPositionX()+right[0]);
-        return characterPosition;
+
+        Position tempPosition = new Position(0,characterPosition.getPositionY());
+        tempPosition.setPositionX(characterPosition.getPositionX()+right[0]);
+
+        return tempPosition;
+
     }
 
     public static Position goUP(Position characterPosition){
-        characterPosition.setPositionY(characterPosition.getPositionY()+up[1]);
-        return characterPosition;
+        Position tempPosition = new Position(0,characterPosition.getPositionY());
+        tempPosition.setPositionX(characterPosition.getPositionX()+up[0]);
+
+        return tempPosition;
     }
 
     public static Position goDown(Position characterPosition){
-        characterPosition.setPositionY(characterPosition.getPositionY()+down[1]);
-        return characterPosition;
+        Position tempPosition = new Position(0,characterPosition.getPositionY());
+        tempPosition.setPositionX(characterPosition.getPositionX()+down[0]);
+
+        return tempPosition;
     }
 
 }

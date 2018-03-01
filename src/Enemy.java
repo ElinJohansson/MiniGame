@@ -8,8 +8,7 @@ public class Enemy {
 
     public Enemy() {
         Random rand = new Random();
-        this.position = new Position(rand.nextInt(58)+1,rand.nextInt(30)+1);
-        System.out.println(position.getPositionX()+" "+position.getPositionY());
+        this.position = new Position(rand.nextInt(58)+1,rand.nextInt(28)+1);
     }
 
     public char getEnemyFace() {

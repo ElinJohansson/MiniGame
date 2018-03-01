@@ -15,7 +15,7 @@ public class Game {
     public Player player;
 
     private List<Enemy> enemies;
-    private int numberOfEnemies = 4;
+    private int numberOfEnemies = 5;
 
     private int scoreCount = 0;
 
