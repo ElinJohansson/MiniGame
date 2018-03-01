@@ -38,7 +38,7 @@ public class Render {
         for (int x = map.getGameBoardWidth(); x < map.getScoreBoardWidth(); x++) {
             for (int y = 0; y < map.getScoreBoardHeight(); y++) {
                 terminal.moveCursor(x, y);
-                if (map.scoreBoard[x][y] == 0) { //Floor
+                if (map.scoreBoard[x][y] == 2) { //Floor
                     terminal.applyForegroundColor(189, 60, 40);
                     terminal.putCharacter(' ');
                 } else if (map.scoreBoard[x][y] == 1) { //Border
