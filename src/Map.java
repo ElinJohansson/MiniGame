@@ -25,36 +25,39 @@ public class Map {
     }
 
     //Fills the game board array
-    private void initializeGameBoard() {
-        gameBoard = new int[gameBoardWidth][gameBoardHeight];
-        for (int x = 0; x < gameBoard.length; x++) { //Löper igenom x-axeln horisontellt
-            for (int y = 0; y < gameBoard[x].length; y++) { //Löper igenom y-axeln vertikalt
-                if(x == 0 || x == gameBoardHeight-1 || y == 0 || y == gameBoard[x].length-1 ){ //If the iterator is on the border
-                    scoreBoard[x][y] = border;
+        private void initializeGameBoard() {
+            gameBoard = new int[gameBoardWidth][gameBoardHeight];
+            for (int x = 0; x < gameBoardWidth; x++) { //Löper igenom x-axeln horisontellt
+                for (int y = 0; y < gameBoardHeight; y++) { //Löper igenom y-axeln vertikalt
+                    if(x == 0 || x == gameBoardWidth-1 || y == 0 || y == gameBoardHeight-1 ){ //If the iterator is on the border
+                        gameBoard[x][y] = border;
+                    } else {
+                        gameBoard[x][y] = floor;
+                    }
                 }
-                gameBoard[x][y] = floor;
             }
         }
-    }
+
 
     //Fills the score board array
     private void initializeScoreBoard() {
         scoreBoard = new int[scoreBoardWidth][scoreBoardHeight];
-        for (int x = 0; x < scoreBoard.length; x++) { //Löper igenom x-axeln horisontellt
+        for (int x = 0; x < gameBoardWidth; x++) { //Löper igenom x-axeln horisontellt
             //The part that is overlapping with the game board
-            for (int y = 0; y < gameBoard[x].length; y++) { //Löper igenom y-axeln vertikalt
-                scoreBoard[x][y] = floor;
+            for (int y = 0; y < gameBoardHeight; y++) { //Löper igenom y-axeln vertikalt
+                scoreBoard[x][y] = 5;
             }
-            //The part that represents the visual score board to the right in the terminal
-            for(int y = gameBoard[x].length+1; y < scoreBoard[x].length; y++){  //gameboard[x].length+1 because the area starts after game board border
-                if(x == 0 || x == scoreBoardHeight-1 || y == scoreBoard[x].length-1 ){ //If the iterator is on the border
+        }
+        for(int x = gameBoardWidth; x < scoreBoardWidth; x++){
+            for(int y = 0; y < gameBoardHeight; y++){
+                if(x == scoreBoardWidth || y == 0 || y == scoreBoardHeight){
                     scoreBoard[x][y] = border;
+                } else {
+                    scoreBoard[x][y] = 5;
                 }
-                scoreBoard[x][y] = scoreBoardTile;
             }
         }
     }
-
     //Getters & Setters
     public int getGameBoardHeight() {
         return gameBoardHeight;

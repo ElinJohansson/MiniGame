@@ -25,4 +25,6 @@ public class Ammo {
         position.setPositionX(position.getPositionX() + direction[0]);
         position.setPositionY(position.getPositionY() + direction[1]);
     }
+
+
 }

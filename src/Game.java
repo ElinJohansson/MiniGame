@@ -19,6 +19,10 @@ public class Game {
 
     private int scoreCount = 0;
 
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     //Constructor
     public Game() {
         terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
@@ -34,6 +38,8 @@ public class Game {
         addEnemies();
         render.updateMap(terminal, player, enemies, map);
     }
+
+
 
     //Adds enemies to enemy list
     public void addEnemies() {
@@ -52,7 +58,8 @@ public class Game {
     //Game over condition
     public boolean gameOver() {
         for (Enemy enemy : enemies) {
-            if (player.getPosition() == enemy.getPosition()) {
+            if (player.getPosition().getPositionX() == enemy.getPosition().getPositionX() &&
+                    player.getPosition().getPositionY() == enemy.getPosition().getPositionY()) {
                 return true;
             }
         }

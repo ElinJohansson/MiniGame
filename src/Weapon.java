@@ -10,7 +10,7 @@ public class Weapon {
     public List<Ammo> shotsFired = new ArrayList<>();
 
     public Weapon(Position playerPosition){
-        position =playerPosition;
+        position =Direction.goRight(playerPosition);
         direction=Direction.right;
     }
 
@@ -36,18 +36,22 @@ public class Weapon {
         switch (key.getKind()){
             case NormalKey:
                 switch (key.getCharacter()){
-                    case w: case W:
-                        
+                    case 'w': case 'W':
+                        setPosition(Direction.goUP(playerPosition));
                         break;
-                    case s: case S:
+                    case 's': case 'S':
+                        setPosition(Direction.goDown(playerPosition));
                         break;
-                    case a: case A:
+                    case 'a': case 'A':
+                        setPosition(Direction.goLeft(playerPosition));
                         break;
-                    case d: case D:
+                    case 'd': case 'D':
+                        setPosition(Direction.goRight(playerPosition));
                         break;
+                    default:
+                        System.out.println("Press another key");
                 }
-
+            break;
         }
-        position=playerPosition;
     }
 }

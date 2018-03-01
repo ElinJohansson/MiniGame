@@ -19,8 +19,8 @@ public class Render {
 
     //Prints the game board
     public void printGameBoard(Terminal terminal, Map map) {
-        for (int x = 0; x < map.gameBoard.length; x++) {
-            for (int y = 0; y < map.gameBoard[x].length; y++) {
+        for (int x = 0; x < map.getGameBoardWidth(); x++) {
+            for (int y = 0; y < map.getGameBoardHeight(); y++) {
                 terminal.moveCursor(x, y);
                 if (map.gameBoard[x][y] == 0) { //Floor
                     terminal.applyForegroundColor(189, 60, 40);
@@ -35,8 +35,8 @@ public class Render {
 
     //Prints the score board
     public void printScoreBoard(Terminal terminal, Map map) {
-        for (int x = 0; x < map.scoreBoard.length; x++) {
-            for (int y = 0; y < map.scoreBoard[x].length; y++) {
+        for (int x = map.getGameBoardWidth(); x < map.getScoreBoardWidth(); x++) {
+            for (int y = 0; y < map.getScoreBoardHeight(); y++) {
                 terminal.moveCursor(x, y);
                 if (map.scoreBoard[x][y] == 0) { //Floor
                     terminal.applyForegroundColor(189, 60, 40);
@@ -53,15 +53,15 @@ public class Render {
     public void printPlayer(Terminal terminal, Player player) {
         terminal.applyForegroundColor(255, 255, 0);
         terminal.moveCursor(player.getPosition().getPositionX(), player.getPosition().getPositionY());
-        terminal.putCharacter(player.heMan);
+        terminal.putCharacter(player.getFace());
     }
 
     //Goes through the enemies' list and prints to the terminal
     public void printEnemy(Terminal terminal, List<Enemy> enemies) {
         for(Enemy enemy:enemies){
             terminal.applyForegroundColor(255,255,0);
-            terminal.moveCursor(enemy.getPosition().getPosistionX(), enemy.getPosition().getPositionY());
-            terminal.putCharacter(enemy.Face); //Enemy char
+            terminal.moveCursor(enemy.getPosition().getPositionX(), enemy.getPosition().getPositionY());
+            terminal.putCharacter(enemy.getEnemyFace()); //Enemy char
         }
     }
 

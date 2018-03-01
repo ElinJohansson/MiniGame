@@ -6,13 +6,15 @@ public class Main {
         Game game = new Game();
         Key key;
         int iterator = 0;
+        game.newGame(); //Startar ett nytt spel
+
         while (true) {
             while (!game.gameOver()) {
                 do {
                     Thread.sleep(5);
                     key = game.terminal.readInput();
                     if (iterator % 100 == 0) {
-                        //monster ska röra på sig
+
                     }
                     iterator++;
                 }

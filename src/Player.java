@@ -8,6 +8,10 @@ public class Player {
     private final char face = 'H';
     private int health;
 
+    public char getFace() {
+        return face;
+    }
+
     //Constructor
     public Player(){
         position = new Position(startX,startY);
