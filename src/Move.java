@@ -3,10 +3,10 @@ import com.googlecode.lanterna.input.Key;
 public class Move {
 
     public void checkKeyInput(Key key, Game game) {
-
-        //Gets the player position and adds it to a temp new position
-        int x = game.player.getPosition().getPositionX();
-        int y = game.player.getPosition().getPositionY();
+        if (key == null) return;
+//        //Gets the player position and adds it to a temp new position
+//        int x = game.player.getPosition().getPositionX();
+//        int y = game.player.getPosition().getPositionY();
 
         Position oldPosition = game.player.getPosition();
 
@@ -18,10 +18,11 @@ public class Move {
 //                newPosition.setPositionY(y + 1);
 //                newPosition.setPositionX(x);
                 newPosition = Direction.goDown(oldPosition);
-                if (!newPosition.hitWall(game.map, newPosition)) {
+                if (newPosition.hitWall(game.map, newPosition)) {
                     game.player.setPosition(oldPosition);
                     break;
                 } else {
+                    game.player.setPosition(newPosition);
                     break;
                 }
             case ArrowUp:

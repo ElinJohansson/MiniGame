@@ -8,7 +8,7 @@ import java.util.List;
 public class Game {
 
     public Terminal terminal;
-    private Render render;
+    public Render render;
     public Move move;
 
     public Map map;
@@ -28,6 +28,7 @@ public class Game {
         terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
         terminalSettings();
         render = new Render();
+        move = new Move();
     }
 
     //Starts a new game
@@ -37,6 +38,16 @@ public class Game {
         enemies = new ArrayList<>();
         addEnemies();
         render.updateMap(terminal, player, enemies, map);
+    }
+
+    public void gameTurn(){
+        render.updateMap(terminal,player,enemies,map);
+    }
+
+    public void moveEnemies(){
+        for(Enemy e : enemies){
+            e.moveEnemy(player,map, enemies );
+        }
     }
 
 
@@ -60,6 +71,7 @@ public class Game {
         for (Enemy enemy : enemies) {
             if (player.getPosition().getPositionX() == enemy.getPosition().getPositionX() &&
                     player.getPosition().getPositionY() == enemy.getPosition().getPositionY()) {
+                System.out.println("Game Over");
                 return true;
             }
         }

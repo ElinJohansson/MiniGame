@@ -28,32 +28,32 @@ public class Enemy {
         return (map.gameBoard[enemyPosition.getPositionX()][enemyPosition.getPositionY()]);
     }
 
-    public void moveEnemy(Player player, Game game) {
+    public void moveEnemy(Player player, Map map, List<Enemy> enemies) {
         //enemy ska röra sig mot spelaren, utan att vänta på knapptryck.
         if (Math.abs(position.getPositionX() - player.getPosition().getPositionX()) >= Math.abs(position.getPositionY() - player.getPosition().getPositionY())) {
             if ((player.getPosition().getPositionX() - position.getPositionX()) <= 0) {
                 position = Direction.goLeft(position);
 
-                if (positionOccupied(game.getEnemies()) || position.hitWall(game.map, position)) {
+                if (positionOccupied(enemies) || position.hitWall(map, position)) {
                     position = Direction.goRight(position);
                 }
             } else {
                 position = Direction.goRight(position);
-                if (positionOccupied(game.getEnemies()) || position.hitWall(game.map, position)) {
+                if (positionOccupied(enemies) || position.hitWall(map, position)) {
                     position = Direction.goLeft(position);
                 }
             }
         } else {
             if ((player.getPosition().getPositionY() - position.getPositionY()) <= 0) {
                 position = Direction.goUP(position);
-                if (positionOccupied(game.getEnemies()) || position.hitWall(game.map, position)) {
+                if (positionOccupied(enemies) || position.hitWall(map, position)) {
                     position = Direction.goDown(position);
                 }
 
 
             } else {
                 position = Direction.goDown(position);
-                if (positionOccupied(game.getEnemies()) || position.hitWall(game.map, position)) {
+                if (positionOccupied(enemies) || position.hitWall(map, position)) {
                     position = Direction.goUP(position);
                 }
 

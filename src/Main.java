@@ -5,22 +5,24 @@ public class Main {
 
         Game game = new Game();
         Key key;
-        int iterator = 0;
+
         game.newGame(); //Startar ett nytt spel
 
-        while (true) {
-            while (!game.gameOver()) {
-                do {
-                    Thread.sleep(5);
-                    key = game.terminal.readInput();
-                    if (iterator % 100 == 0) {
+        int counter = 10;
+        int monsterCounter = 0;
 
-                    }
-                    iterator++;
-                }
-                while (key == null);
-                game.move.checkKeyInput(key, game);
+        do {
+            Thread.sleep(50);
+            key = game.terminal.readInput();
+            if (monsterCounter == counter) {
+                game.moveEnemies();
+                game.gameTurn();
+                monsterCounter = 0;
             }
+            monsterCounter++;
+            game.move.checkKeyInput(key, game);
         }
+        while (!game.gameOver());
+
     }
 }
