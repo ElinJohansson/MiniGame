@@ -10,11 +10,11 @@ public class Render {
     public void updateMap(Terminal terminal, Player player, List<Enemy> enemies, Map map) {
         terminal.clearScreen();
         printGameBoard(terminal, map);
-//        printScoreBoard(terminal, map);
+        printScoreBoard(terminal, map);
         printPlayer(terminal, player);
 //        printEnemy(terminal, enemies);
         printWeapon(terminal, player.weapon);
-        printAmmo(terminal,player.weapon.shotsFired);
+//        printAmmo(terminal,player.weapon.shotsFired);
     }
 
     //Prints the game board

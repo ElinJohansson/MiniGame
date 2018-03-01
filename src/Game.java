@@ -62,9 +62,9 @@ public class Game {
 
     //Game over condition
     public boolean gameOver() {
-        for (Enemy enemy : enemies) {
-            if (player.getPosition().getPositionX() == enemy.getPosition().getPositionX() &&
-                    player.getPosition().getPositionY() == enemy.getPosition().getPositionY()) {
+        for(Enemy enemy : enemies){
+            if(enemy.getPosition().getPositionX() == player.getPosition().getPositionX() &&
+                    enemy.getPosition().getPositionY() == player.getPosition().getPositionY()){
                 System.out.println("Game Over");
                 return true;
             }
@@ -72,26 +72,26 @@ public class Game {
         return false;
     }
 
-    //Method that checks if an enemy is hit by ammo and kills it
-    public void enemyHitByAmmo() {
-        for (Enemy enemy : enemies) {
-            for (Ammo ammo : player.weapon.shotsFired) {
-                if (enemy.getPosition() == ammo.getPosition()) {
-                    enemies.remove(enemy);
-                    player.weapon.shotsFired.remove(ammo);
-                }
-            }
-        }
-    }
+//    //Method that checks if an enemy is hit by ammo and kills it
+//    public void enemyHitByAmmo() {
+//        for (Enemy enemy : enemies) {
+//            for (Ammo ammo : player.weapon.shotsFired) {
+//                if (enemy.getPosition() == ammo.getPosition()) {
+//                    enemies.remove(enemy);
+//                    player.weapon.shotsFired.remove(ammo);
+//                }
+//            }
+//        }
+//    }
 
-    //Method that checks if ammo hits wall, then removes it
-    public void ammoHitsWall() {
-        for (Ammo ammo : player.weapon.shotsFired) {
-            if (map.gameBoard[ammo.getPosition().getPositionX()][ammo.getPosition().getPositionY()] == 1) {
-                player.weapon.shotsFired.remove(ammo);
-            }
-        }
-    }
+//    //Method that checks if ammo hits wall, then removes it
+//    public void ammoHitsWall() {
+//        for (Ammo ammo : player.weapon.shotsFired) {
+//            if (map.gameBoard[ammo.getPosition().getPositionX()][ammo.getPosition().getPositionY()] == 1) {
+//                player.weapon.shotsFired.remove(ammo);
+//            }
+//        }
+//    }
 
 
     //Method that returns the score count ie number of enemies shot

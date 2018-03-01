@@ -22,8 +22,18 @@ public class Weapon {
         return position;
     }
 
-    public void setPosition(Position playerPosition) {
-        position = playerPosition;
+    public void setPositionOnPlayer(Player player) {
+        //nya positionen ska vara vapnets gamla position plus riktningen som spelaren rör sig i
+        int weaponOldX = position.getPositionX();
+        int weaponOldY = position.getPositionY();
+        int[] playerDirection = player.getDirection();
+        position.setPositionX(weaponOldX+playerDirection[0]);
+        position.setPositionY(weaponOldY+playerDirection[1]);
+
+    }
+
+    public void changeWeaponPositionOnPlayer(Position position){
+        this.position=position;
     }
 
     //Creates an ammo object and adds it to shotsFired
@@ -32,7 +42,7 @@ public class Weapon {
         shotsFired.add(newShot);
     }
 
-    public void moveWeapon(Position playerPosition,Key key){
+/*    public void moveWeapon(Position playerPosition,Key key){
         switch (key.getKind()){
             case NormalKey:
                 switch (key.getCharacter()){
@@ -53,5 +63,5 @@ public class Weapon {
                 }
             break;
         }
-    }
+    }*/
 }
