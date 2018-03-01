@@ -12,7 +12,6 @@ public class Game {
     public Terminal terminal;
     public Render render;
     public Move move;
-
     public Map map;
     public Player player;
 
@@ -20,10 +19,6 @@ public class Game {
     private int numberOfEnemies = 10;
 
     private int scoreCount = 0;
-
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
 
     //Constructor
     public Game() {
@@ -98,7 +93,7 @@ public class Game {
     public void ammoHitsWall() {
         List<Ammo> tempAmmo = new ArrayList<>();
         for (Ammo ammo : player.weapon.shotsFired) {
-            if (ammo.getPosition().getPositionX() == map.getGameBoardWidth()-1) {
+            if (ammo.getPosition().getPositionX() == map.getGameBoardWidth() - 1) {
                 terminal.moveCursor(ammo.getPosition().getPositionX(), ammo.getPosition().getPositionY());
                 terminal.applyForegroundColor(100, 30, 15);
                 terminal.putCharacter('\u2588');

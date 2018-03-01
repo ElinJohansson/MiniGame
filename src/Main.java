@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Game game = new Game();
-              game.newGame(); //Startar ett nytt spel
+        game.newGame(); //Startar ett nytt spel
 
         int counter = 10;
         int monsterCounter = 0;
@@ -19,7 +19,7 @@ public class Main {
 //                game.gameTurn();
                 monsterCounter = 0;
             }
-            if( ammoCounter == counterForAmmo){
+            if (ammoCounter == counterForAmmo) {
                 game.moveAmmo();
                 game.ammoHitsWall();
                 game.enemyHitByAmmo();
