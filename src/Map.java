@@ -50,12 +50,19 @@ public class Map {
         }
         for(int x = gameBoardWidth; x < scoreBoardWidth; x++){
             for(int y = 0; y < gameBoardHeight; y++){
-                if(x == scoreBoardWidth || y == 0 || y == scoreBoardHeight){
+                if(x == scoreBoardWidth -1|| y == 0 || y == scoreBoardHeight-1){
                     scoreBoard[x][y] = border;
                 } else {
-                    scoreBoard[x][y] = 5;
+                    scoreBoard[x][y] = scoreBoardTile;
                 }
             }
+        }
+
+        for(int i = 0 ; i < scoreBoard.length; i++){
+            for(int j = 0; j < scoreBoard[i].length; j++){
+                System.out.print(scoreBoard[i][j]);
+            }
+            System.out.println();
         }
     }
     //Getters & Setters
