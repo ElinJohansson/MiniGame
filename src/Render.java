@@ -10,9 +10,9 @@ public class Render {
     public void updateMap(Terminal terminal, Player player, List<Enemy> enemies, Map map) {
         terminal.clearScreen();
         printGameBoard(terminal, map);
-        printScoreBoard(terminal, map);
+//        printScoreBoard(terminal, map);
         printPlayer(terminal, player);
-        printEnemy(terminal, enemies);
+//        printEnemy(terminal, enemies);
         printWeapon(terminal, player.weapon);
         printAmmo(terminal,player.weapon.shotsFired);
     }
@@ -23,7 +23,7 @@ public class Render {
             for (int y = 0; y < map.getGameBoardHeight(); y++) {
                 terminal.moveCursor(x, y);
                 if (map.gameBoard[x][y] == 0) { //Floor
-                    terminal.applyForegroundColor(189, 60, 40);
+                    terminal.applyForegroundColor(Terminal.Color.RED);
                     terminal.putCharacter(' ');
                 } else if (map.gameBoard[x][y] == 1) { //Border
                     terminal.applyForegroundColor(100, 30, 15);

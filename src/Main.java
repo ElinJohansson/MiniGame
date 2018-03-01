@@ -16,7 +16,7 @@ public class Main {
             key = game.terminal.readInput();
             if (monsterCounter == counter) {
                 game.moveEnemies();
-                game.gameTurn();
+//                game.gameTurn();
                 monsterCounter = 0;
             }
             monsterCounter++;

@@ -106,32 +106,42 @@ public class Game {
 
     //Method that loops over the enemies' list and moves them
     public void moveEnemies() {
-        int iterator = 0;
 
         for (Enemy mon : enemies) {
             //Hämta enemy position
-            int x = enemies.get(iterator).getPosition().getPositionX();
-            int y = enemies.get(iterator).getPosition().getPositionY();
+            int x = mon.getPosition().getPositionX();
+            int y = mon.getPosition().getPositionY();
             Position oldPosition = new Position(x, y);
 
-            if (enemies.get(iterator).getPosition().getPositionX() > player.getPosition().getPositionX()) {
+            //för att användas för att sudda ut i terminalen
+            int oldX = x;
+            int oldY = y;
+
+            if (mon.getPosition().getPositionX() > player.getPosition().getPositionX()) {
                 x--;
             }
-            if (enemies.get(iterator).getPosition().getPositionX() < player.getPosition().getPositionX()) {
+            if (mon.getPosition().getPositionX() < player.getPosition().getPositionX()) {
                 x++;
             }
-            if (enemies.get(iterator).getPosition().getPositionY() > player.getPosition().getPositionY()) {
+            if (mon.getPosition().getPositionY() > player.getPosition().getPositionY()) {
                 y--;
             }
-            if (enemies.get(iterator).getPosition().getPositionY() < player.getPosition().getPositionX()) {
+            if (mon.getPosition().getPositionY() < player.getPosition().getPositionX()) {
                 y++;
             }
             Position newPosition = new Position(x, y);
-            enemies.get(iterator).setPosition(newPosition);
+            mon.setPosition(newPosition);
             if (isMonsterOnMonster(enemies)) {
-                enemies.get(iterator).setPosition(oldPosition);
+                mon.setPosition(oldPosition);
             }
-            iterator++;
+
+            //Uppdaterar monstrets position och suddar ut föregående
+            terminal.applyForegroundColor(0, 0, 0);
+            terminal.moveCursor(mon.getPosition().getPositionX(), mon.getPosition().getPositionY());
+            terminal.putCharacter(mon.getEnemyFace());
+            terminal.applyForegroundColor(0, 0, 0);
+            terminal.moveCursor(oldX, oldY);
+            terminal.putCharacter(' ');
         }
     }
 
