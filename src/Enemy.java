@@ -1,9 +1,16 @@
 import java.util.List;
+import java.util.Random;
 
 public class Enemy {
 
     char enemyFace = '\u00DF';
     private Position position;
+
+    public Enemy() {
+        Random rand = new Random();
+        this.position = new Position(rand.nextInt(58)+1,rand.nextInt(30)+1);
+        System.out.println(position.getPositionX()+" "+position.getPositionY());
+    }
 
     public char getEnemyFace() {
         return enemyFace;

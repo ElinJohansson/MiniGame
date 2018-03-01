@@ -59,8 +59,8 @@ public class Render {
     //Goes through the enemies' list and prints to the terminal
     public void printEnemy(Terminal terminal, List<Enemy> enemies) {
         for(Enemy enemy:enemies){
-            terminal.applyForegroundColor(255,255,0);
             terminal.moveCursor(enemy.getPosition().getPositionX(), enemy.getPosition().getPositionY());
+            terminal.applyForegroundColor(255,255,0);
             terminal.putCharacter(enemy.getEnemyFace()); //Enemy char
         }
     }
