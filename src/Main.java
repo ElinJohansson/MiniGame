@@ -20,7 +20,7 @@ public class Main {
                 monsterCounter = 0;
             }
             if (ammoCounter == counterForAmmo) {
-                game.moveAmmo();
+                game.movesAllAmmoAndPrintsTheNewPositions();
                 game.ammoHitsWall();
                 game.enemyHitByAmmo();
                 game.printAmmo();

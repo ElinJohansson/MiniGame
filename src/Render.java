@@ -26,7 +26,7 @@ public class Render {
                     terminal.applyForegroundColor(Terminal.Color.RED);
                     terminal.putCharacter(' ');
                 } else if (map.gameBoard[x][y] == 1) { //Border
-                    terminal.applyForegroundColor(100, 30, 15);
+                    terminal.applyForegroundColor(72,49,79);
                     terminal.putCharacter('\u2588');
                 }
             }
@@ -42,7 +42,7 @@ public class Render {
                     terminal.applyForegroundColor(189, 60, 40);
                     terminal.putCharacter(' ');
                 } else if (map.scoreBoard[x][y] == 1) { //Border
-                    terminal.applyForegroundColor(100, 30, 15);
+                    terminal.applyForegroundColor(72,49,79);
                     terminal.putCharacter('\u2588');
                 }
             }
