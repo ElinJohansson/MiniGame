@@ -28,7 +28,7 @@ public class Weapon {
     public void shoot(Game game) {
         Ammo newShot = new Ammo(position, direction);
         shotsFired.add(newShot);
-        game.music.playFX("380_gunshot_single-mike-koenig.mp3");
+        game.music.playFX("shoot.wav");
     }
 
     //Getters and setters

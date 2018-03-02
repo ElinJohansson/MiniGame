@@ -38,6 +38,9 @@ public class PlayerActions {
             case Tab:
                 game.player.getWeapon().shoot(game);
                 break;
+            case F2:
+                game.newGame();
+                break;
             case NormalKey:
                 break;
             default:
@@ -125,7 +128,8 @@ public class PlayerActions {
 
     //Checks if the character hits a wall of the gameboard
     public boolean hitWall(Map map, Position characterPosition) {
-        if (characterPosition.getPositionX() == map.getGameBoardWidth()-2) {
+        if (characterPosition.getPositionX() == map.getGameBoardWidth()-2 || characterPosition.getPositionY() == map.getGameBoardHeight()-1 ||
+                characterPosition.getPositionY() == 0 || characterPosition.getPositionX() == 0) {
             return true;
         } else {
             return false;

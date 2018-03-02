@@ -12,6 +12,7 @@ public class Render {
         printGameTitle(terminal);
         printPlayer(terminal, player);
         printWeapon(terminal, player.getWeapon());
+
     }
 
     //Prints the game board
@@ -64,6 +65,11 @@ public class Render {
     public void printGameTitle(Terminal terminal){
         printText(terminal, "SIDE INVADERS",72,2,255,255,0);
         printText(terminal, "-Attack of the Rainbow Army-",65,3,255,255,0);
+    }
+
+    //Prints start over info
+    public void printStartOverInfo(Terminal terminal){
+        printText(terminal, "Press F2 to start a new game",16,12,255,255,0);
     }
 
 

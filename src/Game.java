@@ -45,7 +45,8 @@ public class Game {
         printMonsterKillScore();
         printPlayerHealth();
         printLevel();
-        //music.play("Blues-Loop.mp3", true);
+        numberOfEnemies = 5;
+        music.play("spaceinvaders1.mpeg", true);
     }
 
     public void gameTurn() {
@@ -83,6 +84,7 @@ public class Game {
                     enemy.getPosition().getPositionY() == player.getPosition().getPositionY()) ||
                     !isPlayerAlive()) {
                 render.printText(terminal, "LORD ZOD´S RAINBOW MINIONS ARE VICTORIOUS", 10, 10, 255, 0, 0);
+                render.printStartOverInfo(terminal);
                 return true;
             }
         }
@@ -154,6 +156,7 @@ public class Game {
                 terminal.applyForegroundColor(18, 65, 89); //Deletes the ammo from the border. border color
                 terminal.putCharacter('\u2588');
                 tempAmmo.add(ammo);
+                player.setHealth(player.getHealth()-1); //Decrease player health if ammo hits wall
             }
         }
         player.getWeapon().getShotsFired().removeAll(tempAmmo);
