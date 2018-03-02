@@ -2,8 +2,6 @@ public class GameLoopCounter {
     //Loop counters
     private int monsterSpeed = 10;
     private int monsterSpeedCounter = 0;
-    private int monsterWaveCounter = 0;
-    private int monsterWave = 150;
     private int ammoCounter = 0;
     private int ammoSpeed = 3;
     private int levelCounter = 0;
@@ -19,10 +17,6 @@ public class GameLoopCounter {
         if (monsterSpeedCounter == monsterSpeed) {
             game.moveEnemies();
             game.enemyHitByAmmo();
-//            if (monsterWaveCounter == monsterWave) {
-//                game.addEnemiesToList();
-//                monsterWaveCounter = 0;
-//            }
             if(game.getEnemies().isEmpty() && !game.gameOver()){
                 levelCounter+=1;
                 game.render.printText(game.terminal, "Level: "+(levelCounter+1),70, 5, 255, 255, 0);
@@ -36,7 +30,6 @@ public class GameLoopCounter {
         }
         monsterSpeedCounter++;
         ammoCounter++;
-        monsterWaveCounter++;
     }
 
     public int getLevelCounter() {

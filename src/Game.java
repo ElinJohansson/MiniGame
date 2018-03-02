@@ -12,15 +12,13 @@ public class Game {
     public Map map;
     public Player player;
     public GameLoopCounter gameLoopCounter;
+    public Music music;
 
     private List<Enemy> enemies;
     private int numberOfEnemies = 5;
-
     private List<Color> colors;
 
     private int scoreCount = 0;
-
-    public Music music;
 
     //Constructor
     public Game() {
@@ -32,7 +30,6 @@ public class Game {
         colors = new ArrayList<>();
         addColors();
         music = new Music();
-
     }
 
     //Starts a new game
@@ -105,7 +102,6 @@ public class Game {
     //Method that reduces the health of player if an enemy hits the left wall
     public void reducePlayerHealth() {
         player.setHealth(player.getHealth() - 1);
-
     }
 
     //Method that checks if an enemy is hit by ammo and kills it
@@ -131,48 +127,18 @@ public class Game {
         tempAmmo.clear();
     }
 
-    //Prints monster kill score
-    public void printMonsterKillScore() {
-        render.printText(terminal, "Monsters killed: " + getScoreCount(), 70, 6, 255, 255, 0);
-    }
-
-    //Prints player health left
-    public void printPlayerHealth() {
-        render.printText(terminal, "Health left: " + "  ", 70, 7, 255, 255, 0);
-        render.printText(terminal, "Health left: " + player.getHealth(), 70, 7, 255, 255, 0);
-    }
-
-    //Prints current level
-    public void printLevel() {
-        render.printText(terminal, "Level: " + "  ", 70, 5, 255, 255, 0);
-        render.printText(terminal, "Level: " + (gameLoopCounter.getLevelCounter() + 1), 70, 5, 255, 255, 0);
-
-    }
-
-
-    //Method that checks if ammo hits wall, then removes it
-    public void ammoHitsWall() {
-        List<Ammo> tempAmmo = new ArrayList<>();
-        for (Ammo ammo : player.getWeapon().getShotsFired()) {
-            if (ammo.getPosition().getPositionX() == map.getGameBoardWidth() - 1) {
-                terminal.moveCursor(ammo.getPosition().getPositionX(), ammo.getPosition().getPositionY());
-                terminal.applyForegroundColor(18, 65, 89); //Deletes the ammo from the border. border color
-                terminal.putCharacter('\u2588');
-                tempAmmo.add(ammo);
-                player.setHealth(player.getHealth()-1); //Decrease player health if ammo hits wall
-            }
+    //Moves and prints the ammo
+    public void movesAllAmmoAndPrintsTheNewPositions() {
+        for (Ammo a : player.getWeapon().getShotsFired()) {
+            int tempX = a.getPosition().getPositionX(); //Stores the old positions
+            int tempY = a.getPosition().getPositionY();
+            terminal.moveCursor(tempX, tempY); //Erases the old position
+            terminal.putCharacter(' ');
+            a.moveAmmo(); //Moves the current ammo
+            terminal.moveCursor(a.getPosition().getPositionX(), a.getPosition().getPositionY()); //Prints to the terminal
+            terminal.applyForegroundColor(255, 255, 0); //Ammo color
+            terminal.putCharacter(a.getShot());
         }
-        player.getWeapon().getShotsFired().removeAll(tempAmmo);
-    }
-
-    //Method that updates the score count, called when an enemy is shot
-    public void setScoreCount(int scoreCount) {
-        this.scoreCount = this.scoreCount + scoreCount;
-    }
-
-    //Method that returns the score count ie number of enemies shot
-    public int getScoreCount() {
-        return scoreCount;
     }
 
     //Method that loops over the enemies' list and moves them
@@ -218,6 +184,50 @@ public class Game {
         enemiesToKill.clear();
     }
 
+    //Prints monster kill score
+    public void printMonsterKillScore() {
+        render.printText(terminal, "Monsters killed: " + getScoreCount(), 70, 6, 255, 255, 0);
+    }
+
+    //Prints player health left
+    public void printPlayerHealth() {
+        render.printText(terminal, "Health left: " + "  ", 70, 7, 255, 255, 0);
+        render.printText(terminal, "Health left: " + player.getHealth(), 70, 7, 255, 255, 0);
+    }
+
+    //Prints current level
+    public void printLevel() {
+        render.printText(terminal, "Level: " + "  ", 70, 5, 255, 255, 0);
+        render.printText(terminal, "Level: " + (gameLoopCounter.getLevelCounter() + 1), 70, 5, 255, 255, 0);
+
+    }
+
+    //Method that checks if ammo hits wall, then removes it
+    public void ammoHitsWall() {
+        List<Ammo> tempAmmo = new ArrayList<>();
+        for (Ammo ammo : player.getWeapon().getShotsFired()) {
+            if (ammo.getPosition().getPositionX() == map.getGameBoardWidth() - 1) {
+                terminal.moveCursor(ammo.getPosition().getPositionX(), ammo.getPosition().getPositionY());
+                terminal.applyForegroundColor(18, 65, 89); //Deletes the ammo from the border. border color
+                terminal.putCharacter('\u2588');
+                tempAmmo.add(ammo);
+                player.setHealth(player.getHealth()-1); //Decrease player health if ammo hits wall
+            }
+        }
+        player.getWeapon().getShotsFired().removeAll(tempAmmo);
+    }
+
+    //Method that updates the score count, called when an enemy is shot
+    public void setScoreCount(int scoreCount) {
+        this.scoreCount = this.scoreCount + scoreCount;
+    }
+
+    //Method that returns the score count ie number of enemies shot
+    public int getScoreCount() {
+        return scoreCount;
+    }
+
+    //Adding rainbow colors to color list
     public void addColors() {
         colors.add(new Color(255, 0, 102)); //rosa
         colors.add(new Color(0, 153, 255)); //blå
@@ -226,22 +236,6 @@ public class Game {
         colors.add(new Color(204, 153, 255)); //ljuslila
         colors.add(new Color(255, 83, 26)); //orange
         colors.add(new Color(107, 0, 179)); //mörklila
-    }
-
-
-    //Moves and prints the ammo
-    public void movesAllAmmoAndPrintsTheNewPositions() {
-        for (Ammo a : player.getWeapon().getShotsFired()) {
-            int tempX = a.getPosition().getPositionX(); //Stores the old positions
-            int tempY = a.getPosition().getPositionY();
-            terminal.moveCursor(tempX, tempY); //Erases the old position
-            terminal.putCharacter(' ');
-            a.moveAmmo(); //Moves the current ammo
-            terminal.moveCursor(a.getPosition().getPositionX(), a.getPosition().getPositionY()); //Prints to the terminal
-            terminal.applyForegroundColor(255, 255, 0); //Ammo color
-            terminal.putCharacter(a.getShot());
-
-        }
     }
 
     public List<Enemy> getEnemies() {

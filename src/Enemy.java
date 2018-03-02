@@ -1,16 +1,9 @@
-import java.util.Random;
-
 public class Enemy {
 
     private char enemyFace = '\u2593';
     private Position position;
 
     //Constructor
-    public Enemy() {
-        Random rand = new Random();
-        this.position = new Position(58, rand.nextInt(28) + 1); //Enemy start position is randomised on the game board
-    }
-
     public Enemy(int x, int y){
         position = new Position(x,y);
     }

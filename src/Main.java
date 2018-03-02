@@ -1,7 +1,7 @@
 import com.googlecode.lanterna.input.Key;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         Game game = new Game();
         GameLoopCounter gameLoopCounter = new GameLoopCounter();
@@ -22,13 +22,16 @@ public class Main {
             while (!game.gameOver());
             Key key;
             game.music.stopAll();
-            game.music.play("hyena-laugh_daniel-simion.mp3", true);
+            game.music.play("hyena-laugh.mp3", true);
             do {
-                Thread.sleep(50);
-                key = game.terminal.readInput();
-                if (key != null && key.getKind() == Key.Kind.F2) {
-                    System.out.println("pressed f2");
-                    startNewGame = true;
+                try {
+                    Thread.sleep(50);
+                    key = game.terminal.readInput();
+                    if (key != null && key.getKind() == Key.Kind.F2) {
+                        startNewGame = true;
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println("You interrupted Mr. Smiley Face! Shame on You!");
                 }
             }
             while (!startNewGame);
