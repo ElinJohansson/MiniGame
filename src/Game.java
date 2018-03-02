@@ -144,7 +144,7 @@ public class Game {
 
     //Prints current level
     public void printLevel() {
-        render.printText(terminal, "Level: " + "  ", 70, 7, 255, 255, 0);
+        render.printText(terminal, "Level: " + "  ", 70, 5, 255, 255, 0);
         render.printText(terminal, "Level: " + (gameLoopCounter.getLevelCounter() + 1), 70, 5, 255, 255, 0);
 
     }
