@@ -125,7 +125,7 @@ public class PlayerActions {
 
     //Checks if the character hits a wall of the gameboard
     public boolean hitWall(Map map, Position characterPosition) {
-        if (map.gameBoard[characterPosition.getPositionX()][characterPosition.getPositionY()] == 1) {
+        if (characterPosition.getPositionX() == map.getGameBoardWidth()-2) {
             return true;
         } else {
             return false;
