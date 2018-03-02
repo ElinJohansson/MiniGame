@@ -45,6 +45,7 @@ public class Game {
         printMonsterKillScore();
         printPlayerHealth();
         printLevel();
+        enemies.clear();
         numberOfEnemies = 5;
         music.play("spaceinvaders1.mpeg", true);
     }
