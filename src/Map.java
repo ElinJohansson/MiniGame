@@ -4,7 +4,6 @@ public class Map {
     private int gameBoardHeight = 30;
     private int gameBoardWidth = 60;
 
-
     //Dimensions for the score board
     private int scoreBoardHeight = 30;
     private int scoreBoardWidth = 100; //Because the left part overlaps with the game board
@@ -24,7 +23,7 @@ public class Map {
         initializeScoreBoard();
     }
 
-    //Fills the game board array
+    //Initializes and fills the game board array
     private void initializeGameBoard() {
         gameBoard = new int[gameBoardWidth][gameBoardHeight];
         for (int x = 0; x < gameBoardWidth; x++) { //Löper igenom x-axeln horisontellt
@@ -39,7 +38,7 @@ public class Map {
     }
 
 
-    //Fills the score board array
+    //Initializes and fills the score board array
     private void initializeScoreBoard() {
         scoreBoard = new int[scoreBoardWidth][scoreBoardHeight];
         for (int x = 0; x < gameBoardWidth; x++) { //Löper igenom x-axeln horisontellt
@@ -48,6 +47,7 @@ public class Map {
                 scoreBoard[x][y] = 5;
             }
         }
+        //The part that contains the visual part of the score board
         for (int x = gameBoardWidth; x < scoreBoardWidth; x++) {
             for (int y = 0; y < gameBoardHeight; y++) {
                 if (x == scoreBoardWidth - 1 || y == 0 || y == scoreBoardHeight - 1) {
@@ -75,5 +75,17 @@ public class Map {
 
     public int getScoreBoardWidth() {
         return scoreBoardWidth;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public int getBorder() {
+        return border;
+    }
+
+    public int getScoreBoardTile() {
+        return scoreBoardTile;
     }
 }
