@@ -42,11 +42,12 @@ public class Game {
         enemies = new ArrayList<>();
         addEnemiesToList();
         render.updateMap(terminal, player, enemies, map);
+        scoreCount = 0;
+        gameLoopCounter.setLevelCounter(0);
+        numberOfEnemies = 5;
         printMonsterKillScore();
         printPlayerHealth();
         printLevel();
-        enemies.clear();
-        numberOfEnemies = 5;
         music.play("spaceinvaders1.mpeg", true);
     }
 

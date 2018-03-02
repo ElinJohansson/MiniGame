@@ -42,4 +42,8 @@ public class GameLoopCounter {
     public int getLevelCounter() {
         return levelCounter;
     }
+
+    public void setLevelCounter(int levelCounter) {
+        this.levelCounter = levelCounter;
+    }
 }
