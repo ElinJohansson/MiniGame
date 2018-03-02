@@ -40,11 +40,12 @@ public class Game {
         map = new Map();
         player = new Player();
         enemies = new ArrayList<>();
+        numberOfEnemies = 5;
+        enemies.clear();
         addEnemiesToList();
         render.updateMap(terminal, player, enemies, map);
         scoreCount = 0;
         gameLoopCounter.setLevelCounter(0);
-        numberOfEnemies = 5;
         printMonsterKillScore();
         printPlayerHealth();
         printLevel();
