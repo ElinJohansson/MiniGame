@@ -12,7 +12,6 @@ public class Render {
         printGameTitle(terminal);
         printPlayer(terminal, player);
         printWeapon(terminal, player.getWeapon());
-
     }
 
     //Prints the game board
