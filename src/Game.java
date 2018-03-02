@@ -20,6 +20,8 @@ public class Game {
 
     private int scoreCount = 0;
 
+    public Music music;
+
     //Constructor
     public Game() {
         terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
@@ -29,6 +31,7 @@ public class Game {
         gameLoopCounter = new GameLoopCounter();
         colors = new ArrayList<>();
         addColors();
+        music = new Music();
 
     }
 
@@ -42,6 +45,7 @@ public class Game {
         printMonsterKillScore();
         printPlayerHealth();
         printLevel();
+        //music.play("Blues-Loop.mp3", true);
     }
 
     public void gameTurn() {

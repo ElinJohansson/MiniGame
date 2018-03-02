@@ -36,7 +36,7 @@ public class PlayerActions {
                 playerMoveRight(game, oldPosition, newPosition, oldPlayerX + 1, Direction.right);
                 break;
             case Tab:
-                game.player.getWeapon().shoot();
+                game.player.getWeapon().shoot(game);
                 break;
             case NormalKey:
                 break;

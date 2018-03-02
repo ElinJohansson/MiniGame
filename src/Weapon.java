@@ -25,9 +25,10 @@ public class Weapon {
     }
 
     //Creates an ammo object and adds it to shotsFired
-    public void shoot() {
+    public void shoot(Game game) {
         Ammo newShot = new Ammo(position, direction);
         shotsFired.add(newShot);
+        game.music.playFX("380_gunshot_single-mike-koenig.mp3");
     }
 
     //Getters and setters

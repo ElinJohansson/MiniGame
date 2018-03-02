@@ -16,5 +16,9 @@ public class Main {
         }
         while (!game.gameOver());
 
+        game.music.stopAll();
+
+        game.music.play("hyena-laugh_daniel-simion.mp3",true);
+        Thread.sleep(50000);
     }
 }
